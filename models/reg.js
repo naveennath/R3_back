@@ -11,7 +11,7 @@ const regSchema=mongoose.Schema({
     required: true,
         min: 8,
   },
-  repass:String,
+ 
   phone:{
        type: Number,
         required: true,
@@ -19,6 +19,14 @@ const regSchema=mongoose.Schema({
         
   }
 
+
 })
 
+regShema.virtual('id').get(function(){
+return this._id.toHexString();
+});
+regShema.set('toJson',{
+  virtuals:true,
+});
 exports.Reg = mongoose.model('Reg',regSchema);
+exports.regShema=regShema;
