@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
 const reg=new Reg({
   name: req.body.name,
   email:req.body.email,
-  pass:bcrypt.hashSync(req.body.pass,'secret'),
+  pass:bcrypt.hashSync(req.body.passss,10),
   
   phone:req.body.phone
 })
