@@ -13,7 +13,8 @@ const cors=require('cors');
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
-app.options('*',cors())
+app.options('*',cors());
+
 
 
 

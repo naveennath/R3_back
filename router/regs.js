@@ -3,6 +3,7 @@ const express=require('express');
 const router= express.Router(); 
 const bcrypt =require('bcryptjs');
 
+
 router.get('/nopass', async (req, res) => {
 const regList =  await Reg.find().select('-pass');
 if(!regList){
@@ -19,12 +20,25 @@ if(!regList){
  return res.send(regList);
 });
 
-router.get('/login', async (req, res) => {
+router.get(`/get/count`, async (req, res) =>{
+    const userCount = await Reg.countDocuments((count) => count)
+
+    if(!userCount) {
+        res.status(500).json({success: false})
+    } 
+    res.send({
+        userCount: userCount
+    });
+})
+
+
+router.post('/login', async (req, res) => {
 const user =  await Reg.findOne({email:req.body.email});
 if(!user){
   return res.status(400).send('the user not found');
 }
-if(user && (req.body.pass==user.pass)){
+if(user && (bcrypt.compareSync(req.body.pass,user.pass))){
+ 
 return res.status(200).send({name: user.name});
 }
 else{
@@ -57,14 +71,16 @@ router.post('/', async (req, res) => {
 const reg=new Reg({
   name: req.body.name,
   email:req.body.email,
-  pass:bcrypt.hashSync(req.body.passss,10),
+  pass:bcrypt.hashSync(req.body.pass,10),
   
   phone:req.body.phone
 })
 // console.log(reg.repass);
 
 await reg.save().then((createdReg=> {
-  return res.status(201).json(createdReg)
+  return res.status(201).json({
+    name:reg.name
+  })
 })).catch((err)=>{
   return res.status(500).json({
   error:err,

@@ -29,4 +29,4 @@ regSchema.set('toJson',{
   virtuals:true,
 });
 exports.Reg = mongoose.model('Reg',regSchema);
-exports.regShema=regShema;
+exports.regSchema=regSchema;
