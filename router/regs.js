@@ -1,6 +1,7 @@
 const {Reg}=require('../models/reg');
 const express=require('express');
 const router= express.Router(); 
+const bcrypt =require('bcryptjs');
 
 router.get('/nopass', async (req, res) => {
 const regList =  await Reg.find().select('-pass');
@@ -56,7 +57,7 @@ router.post('/', async (req, res) => {
 const reg=new Reg({
   name: req.body.name,
   email:req.body.email,
-  pass:req.body.pass,
+  pass:bcrypt.hashSync(req.body.pass,'secret'),
   
   phone:req.body.phone
 })
