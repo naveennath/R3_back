@@ -1,5 +1,6 @@
 const {Reg}=require('../models/reg');
 const express=require('express');
+const app = express();
 const router= express.Router(); 
 const bcrypt =require('bcryptjs');
 
@@ -31,6 +32,12 @@ router.get(`/get/count`, async (req, res) =>{
 })
 
 
+app.options('/login', function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
+});
 router.post('/login', async (req, res) => {
 const user =  await Reg.findOne({email:req.body.email});
 if(!user){
