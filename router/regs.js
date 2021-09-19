@@ -48,7 +48,7 @@ else{
 });
 
 router.post('/', async (req, res) => {
-  try{
+  
     const{name,email,pass,phone}=req.body;
        const admin = await Reg.findOne({email:email});
     console.log(admin);
@@ -82,9 +82,7 @@ await reg.save().then((createdReg=> {
   success:false
   })
 })
-}}catch (err){
-        return res.status(500).json({error:err.message});
-    }
+}
   
   
 });
