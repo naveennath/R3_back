@@ -3,12 +3,12 @@ const express=require('express');
 const router= express.Router(); 
 const bcrypt =require('bcryptjs');
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+app.options('/login', function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
 });
-
 router.get('/nopass', async (req, res) => {
 const regList =  await Reg.find().select('-pass');
 if(!regList){
