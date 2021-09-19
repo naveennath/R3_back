@@ -7,6 +7,8 @@ const Product=require('./models/product');
 const productsRouter=require('./router/products');
 const Reg=require('./models/reg');
 const regsRouter=require('./router/regs');
+const verifyRouter=require('./router/verify');
+
 const cors=require('cors');
 
 
@@ -29,6 +31,8 @@ console.log(api+'/products');
 
 app.use(api+'/products',productsRouter)
 app.use(api+'/regs',regsRouter)
+app.use(api+'/verify',verifyRouter)
+
 
 mongoose.connect(process.env.CONN_STRING,{
   useNewUrlParser:true,
