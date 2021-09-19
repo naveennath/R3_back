@@ -11,7 +11,7 @@ const async = require('async');
 // initialize redis
 const redis = require("redis");
 const client = redis.createClient({
-    host: 'localhost',
+    host: 'redis://localhost',
     port: 6379
 });
  
@@ -82,8 +82,8 @@ router.post('/send',function(req,res){
         if (error) {
             return console.log(error);
         }
-        // console.log('Message sent: %s', info.messageId);   
-        // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        console.log('Message sent: %s', info.messageId);   
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
    return res.status(201).json({
    OTP:otp
   });
