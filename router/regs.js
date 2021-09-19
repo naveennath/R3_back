@@ -53,12 +53,12 @@ router.post('/', async (req, res) => {
        const admin = await Reg.findOne({email:email});
     console.log(admin);
     if(!email ||!name||!pass||!phone)
-            return res.status(201).json({msg: "Fill all the fields"});
+            return res.status(201).json({msg: "Fill all the fields"})
         
      
       
          else if(admin)
-            return res.status(201).json({msg:"Aldready registered"});
+            return res.status(201).json({msg:"Aldready registered"})
 
  else{
 
