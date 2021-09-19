@@ -10,10 +10,7 @@ const async = require('async');
 
 // initialize redis
 const redis = require("redis");
-const client = redis.createClient({
-    host: 'redis://localhost',
-    port: 6379
-});
+const client = redis.createClient(6379,'localhost');
  
 client.on("error", function(error) {
   console.error(error);
@@ -90,42 +87,42 @@ router.post('/send',function(req,res){
     });
 });
 
-router.post('/verif',function(req,res){
+router.post('/ver',function(req,res){
 
     // check if otp exists in redis (else send message otp expired)
     client.keys('*', (err, keys) => {
-        if (err) res.render('otp',{msg : 'An error occurred!'});
+        if (err) return res.status(500).json({msg : 'An error occurred!'});
+      console.log(keys);
         if(keys){
             console.log(keys.length);
             
             let flag = 0;
             for(let i = 0; i<keys.length; i++){
                 client.get(keys[i], (err, value) => {
-
+  console.log(value);
+                         console.log(req.body.otp);
                     if (err) 
-                    return res.status(500).json({
-   msg : 'An error occurred!'
-  });
+                    return res.status(500).json({  msg : 'An error occurred!' });
   
-
-                    if(value === req.body.otp){
+console.log(String(value)===String(req.body.otp));
+                   if(String(value)===String(req.body.otp)){
+                        
                         flag = 1;
-                       return res.status(201).json({msg:"You have been successfully registered"});
+                res.status(201).json({msg:"You have been successfully registered"});
                     }
                 });
             }
 
             if(flag === 0)
-            return res.status(500).json({
-msg : 'Incorrect OTP!'  });
+            return res.status(500).json({msg : 'Incorrect OTP!'  });
               
         }else{
-              return res.status(500).json({
-msg : 'Error fetchin OTP!' });
-            res.render('otp',{msg : 'Error fetchin OTP!'});
+              return res.status(500).json({msg : 'Error fetchin OTP!' });
+         
         }
     });
+        
  
-});  
+});
 
 module.exports=router;
