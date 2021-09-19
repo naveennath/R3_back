@@ -11,8 +11,8 @@ const async = require('async');
 // initialize redis
 const redis = require("redis");
 const client = redis.createClient({
-    host: 'localhost',
-    port: 6379
+    host: 'https://r3-back.herokuapp.com',
+    
 });
  
 client.on("error", function(error) {
