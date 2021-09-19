@@ -50,21 +50,16 @@ else{
 router.post('/', async (req, res) => {
   try{
     const{name,email,pass,phone}=req.body;
-    
-  
+       const admin = await Reg.findOne({email:email});
+    console.log(admin);
     if(!email ||!name||!pass||!phone)
             return res.status(400).json({msg: "Fill all the fields"});
         
-        const admin = await Reg.findOne({email:email});
-        console.log(admin);
-         if(admin)
+     
+      
+         else if(admin)
             return res.status(400).json({msg:"Aldready registered"});
 
-        // const isMatch = compare(pass,repass);
-        // if(!isMatch)
-        //     return res.status(400).json({msg:"password Not Match"});
-  
-     
  else{
 
 
