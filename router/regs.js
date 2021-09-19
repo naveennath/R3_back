@@ -41,14 +41,14 @@ app.options('/login', function (req, res) {
 router.post('/login', async (req, res) => {
 const user =  await Reg.findOne({email:req.body.email});
 if(!user){
-  return res.status(400).send({msg:"the user not found"});
+  return res.status(200).send({msg:"the user not found"});
 }
 if(user && (bcrypt.compareSync(req.body.pass,user.pass))){
  
 return res.status(200).send({name: user.name, email:user.email});
 }
 else{
-  return res.status(400).send({msg:"password is wrong"});
+  return res.status(200).send({msg:"password is wrong"});
 }
   
 });
