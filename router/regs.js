@@ -45,7 +45,7 @@ if(!user){
 }
 if(user && (bcrypt.compareSync(req.body.pass,user.pass))){
  
-return res.status(200).send({name: user.name});
+return res.status(200).send({name: user.name, email:user.email});
 }
 else{
   return res.status(400).send({msg:"password is wrong"});
