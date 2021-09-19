@@ -90,7 +90,7 @@ router.post('/send',function(req,res){
     });
 });
 
-router.post('/verify',function(req,res){
+router.post('/verif',function(req,res){
 
     // check if otp exists in redis (else send message otp expired)
     client.keys('*', (err, keys) => {
@@ -102,20 +102,26 @@ router.post('/verify',function(req,res){
             for(let i = 0; i<keys.length; i++){
                 client.get(keys[i], (err, value) => {
 
-                    if (err) res.render('otp',{msg : 'An error occurred!'});
+                    if (err) 
+                    return res.status(500).json({
+   msg : 'An error occurred!'
+  });
+  
 
                     if(value === req.body.otp){
                         flag = 1;
-                        res.send("You have been successfully registered");
+                       return res.status(201).json({msg:"You have been successfully registered"});
                     }
                 });
             }
 
             if(flag === 0)
-                res.render('otp',{msg : 'Incorrect OTP!'});
-
- 
+            return res.status(500).json({
+msg : 'Incorrect OTP!'  });
+              
         }else{
+              return res.status(500).json({
+msg : 'Error fetchin OTP!' });
             res.render('otp',{msg : 'Error fetchin OTP!'});
         }
     });
