@@ -3,6 +3,11 @@ const express=require('express');
 const router= express.Router(); 
 const bcrypt =require('bcryptjs');
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 router.get('/nopass', async (req, res) => {
 const regList =  await Reg.find().select('-pass');
