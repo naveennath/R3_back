@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const regSchema=mongoose.Schema({
+const reg_colleSchema=mongoose.Schema({
   name:{
     type:String,
     required: true,
@@ -22,11 +22,4 @@ const regSchema=mongoose.Schema({
 
 })
 
-regSchema.virtual('id').get(function(){
-return this._id.toHexString();
-});
-regSchema.set('toJson',{
-  virtuals:true,
-});
-exports.Reg = mongoose.model('Reg',regSchema);
-exports.regSchema=regSchema;
+exports.Reg_colle = mongoose.model('Reg_colle',reg_colleSchema);

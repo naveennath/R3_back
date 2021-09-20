@@ -3,10 +3,24 @@ const app = express();
 const  bodyParser = require('body-parser');
 const morgan= require('morgan');
 const mongoose=require('mongoose');
-const Product=require('./models/product');
-const productsRouter=require('./router/products');
 const Reg=require('./models/reg');
 const regsRouter=require('./router/regs');
+
+const Reg_pick=require('./models/reg_pick');
+const reg_picksRouter=require('./router/reg_picks');
+
+const Reg_colle=require('./models/reg_colle');
+const reg_collesRouter=require('./router/reg_colles');
+
+const Address_data=require('./models/address_data');
+const address_datasRouter=require('./router/address_datas');
+
+const Vehicle=require('./models/vehicle');
+const vehiclesRouter=require('./router/vehicles');
+
+const Coin=require('./models/coin');
+const coinsRouter=require('./router/coins');
+
 const verifyRouter=require('./router/verify');
 
 const cors=require('cors');
@@ -29,9 +43,14 @@ const api=process.env.API_URL;
 console.log(api+'/products');
 
 
-app.use(api+'/products',productsRouter)
+
 app.use(api+'/regs',regsRouter)
 app.use(api+'/verify',verifyRouter)
+app.use(api+'/reg_picks',reg_picksRouter)
+app.use(api+'/reg_colles',reg_collesRouter)
+app.use(api+'/address_datas',address_datasRouter)
+app.use(api+'/vehicles',vehiclesRouter)
+app.use(api+'/coins',coinsRouter)
 
 
 mongoose.connect(process.env.CONN_STRING,{
