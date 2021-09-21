@@ -17,6 +17,10 @@ quantity:{
 address:{
   type:String,
   required:true,
+},
+isBooked:{
+  type:Boolean,
+  required:true,
 }
-
-exports.booking_request = mongoose.model('booking_request',booking_requireSchema}
+})
+exports.Booking_request = mongoose.model('Booking_request',booking_requestSchema);

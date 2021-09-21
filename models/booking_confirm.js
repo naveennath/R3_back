@@ -7,21 +7,26 @@ email:
   type: String,
  required: true,
 },
-garbage_type:{
-  type: String,
-  required:true,
-},
-quantity:{
-  type:String,
-  required:true,
-},
-address:{
-  type:String,
-  required:true,
-},
+// garbage_type:{
+//   type: String,
+//   required:true,
+// },
+// quantity:{
+//   type:String,
+//   required:true,
+// },
+// address:{
+//   type:String,
+//   required:true,
+// },
 pick_email:{
   type:String,
   required:true,
+},
+booking_request:{
+  type:mongoose.Schema.Types.ObjectId,
+  ref:'booking_request',
+  required:true
 }
-
-exports.booking_confirm = mongoose.model('booking_confirm',booking_confirmSchema}
+})
+exports.Booking_confirm = mongoose.model('Booking_confirm',booking_confirmSchema);

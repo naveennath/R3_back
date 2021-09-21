@@ -21,6 +21,14 @@ const vehiclesRouter=require('./router/vehicles');
 const Coin=require('./models/coin');
 const coinsRouter=require('./router/coins');
 
+const Booking_request=require('./models/booking_request');
+const booking_requestsRouter=require('./router/booking_requests');
+
+const Collection=require('./models/collection');
+const collectionsRouter=require('./router/collections');
+
+const Booking_confirm=require('./models/booking_confirm');
+const booking_confirmsRouter=require('./router/booking_confirms');
 const verifyRouter=require('./router/verify');
 
 const cors=require('cors');
@@ -50,7 +58,10 @@ app.use(api+'/reg_picks',reg_picksRouter)
 app.use(api+'/reg_colles',reg_collesRouter)
 app.use(api+'/address_datas',address_datasRouter)
 app.use(api+'/vehicles',vehiclesRouter)
+app.use(api+'/collections',collectionsRouter)
 app.use(api+'/coins',coinsRouter)
+app.use(api+'/booking_requests',booking_requestsRouter)
+app.use(api+'/booking_confirms',booking_confirmsRouter)
 
 
 mongoose.connect(process.env.CONN_STRING,{
