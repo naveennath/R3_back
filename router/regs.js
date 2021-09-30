@@ -171,8 +171,12 @@ router.delete('/:id', (req, res)=>{
     });
 });
 
-router.delete('/delete', (req, res)=>{
-    Reg.findOneAndDelete(req.body.email).then(reg =>{
+
+router.delete('/', async(req, res)=>{
+    const emai=req.body.email;
+        const ress=await Reg.findOne({email:emai});
+    const ans=ress._id.toString();
+    Reg.findByIdAndRemove(ans).then(reg =>{
         if(reg) {
             return res.status(200).json({success: true, message: 'the reg is deleted!'});
         } else {
@@ -182,4 +186,5 @@ router.delete('/delete', (req, res)=>{
        return res.status(500).json({success: false, error: err}) ;
     });
 });
+
 module.exports=router;

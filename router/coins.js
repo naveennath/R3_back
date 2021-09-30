@@ -83,7 +83,7 @@ router.put('/:email',async (req, res)=> {
 
 router.delete('/:email', async(req, res)=>{
     
-        const ress=await Coin.findOne({email:req.params.emailS});
+        const ress=await Coin.findOne({email:req.params.email});
     const ans=ress._id.toString();
     Coin.findByIdAndRemove(ans).then(reg =>{
         if(reg) {
