@@ -107,7 +107,7 @@ app.options('/get', function (req, res) {
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.end();
 });
-router.post('/get', async(req,res)=>{
+router.get('/get', async(req,res)=>{
   const email=req.body.email;
   console.log(email);
     const rg = await Reg.findOne({email:email});
