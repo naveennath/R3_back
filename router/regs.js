@@ -102,6 +102,17 @@ router.get('/:id', async(req,res)=>{
     res.status(200).send(reg);
 });
 
+router.post('/get', async(req,res)=>{
+  const email=req.body.email;
+  console.log(email);
+    const rg = await Reg.findOne({email:email});
+
+    if(!rg) {
+        return res.status(500).json({message: 'The reg with the given email was not found.'});
+    } 
+     return res.status(200).json({email:email});
+});
+
 router.put('/:email',async (req, res)=> {
    
     const reg = await Reg.findOneAndUpdate(
