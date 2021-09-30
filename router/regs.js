@@ -171,8 +171,8 @@ router.delete('/:id', (req, res)=>{
     });
 });
 
-router.delete('/:email', (req, res)=>{
-    Reg.findOneAndDelete(req.params.email).then(reg =>{
+router.delete('/delete', (req, res)=>{
+    Reg.findOneAndDelete(req.body.email).then(reg =>{
         if(reg) {
             return res.status(200).json({success: true, message: 'the reg is deleted!'});
         } else {
