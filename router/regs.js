@@ -173,13 +173,16 @@ router.delete('/:id', (req, res)=>{
 
 
 
-app.options('/del', function (req, res) {
+app.options('/', function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader('Access-Control-Allow-Methods', '*');
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.end();
 });
-router.delete('/del', async(req, res)=>{
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+}) 
+router.delete('/', async(req, res)=>{
     const emai=req.body.email;
         const ress=await Reg.findOne({email:emai});
     const ans=ress._id.toString();
