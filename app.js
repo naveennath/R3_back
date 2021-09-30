@@ -49,9 +49,7 @@ console.log(`Your port is ${process.env.API_URL}`);
 // http://localhost:3000/api/v1/products
 const api=process.env.API_URL;
 console.log(api+'/products');
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-}) 
+
 
 
 app.use(api+'/regs',regsRouter)
