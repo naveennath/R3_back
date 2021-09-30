@@ -179,9 +179,7 @@ app.options('/', function (req, res) {
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.end();
 });
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-}) 
+
 router.delete('/', async(req, res)=>{
     const emai=req.body.email;
         const ress=await Reg.findOne({email:emai});
