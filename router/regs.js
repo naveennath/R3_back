@@ -170,4 +170,16 @@ router.delete('/:id', (req, res)=>{
        return res.status(500).json({success: false, error: err}) ;
     });
 });
+
+router.delete('/:email', (req, res)=>{
+    Reg.findOneAndDelete(req.params.email).then(reg =>{
+        if(reg) {
+            return res.status(200).json({success: true, message: 'the reg is deleted!'});
+        } else {
+            return res.status(404).json({success: false , message: "reg not found!"});
+        }
+    }).catch(err=>{
+       return res.status(500).json({success: false, error: err}) ;
+    });
+});
 module.exports=router;
