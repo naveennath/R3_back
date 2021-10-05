@@ -49,7 +49,7 @@ const vehicle=new Vehicle({
 
 await vehicle.save().then((createdVehicle=> {
   return res.status(201).json({
-    name:vehicle.name
+    msg:'Added Successfully'
   })
 })).catch((err)=>{
   return res.status(500).json({
