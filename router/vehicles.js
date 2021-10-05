@@ -16,7 +16,7 @@ if(!regList){
 
 router.get('/:email', async (req, res) => {
   
-const regList =  await Vehicle.find({email:req.params.email}).select('type vehicle_no');
+const regList =  await Vehicle.find({email:req.params.email}).select('type vehicle_no model_name');
 
 
 if(!regList){
@@ -43,6 +43,7 @@ const vehicle=new Vehicle({
   email:req.body.email,
    type:req.body.type,
    vehicle_no:req.body.vehicle_no,
+   model_name:req.body.model_name,
 })
 // console.log(reg.repass);
 
@@ -73,6 +74,7 @@ router.put('/:email',async (req, res)=> {
            
     type:req.body.type,
    vehicle_no:req.body.vehicle_no,
+   model_name:req.body.model_name,
 
         },
         { new: true}
