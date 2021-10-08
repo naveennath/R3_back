@@ -101,7 +101,7 @@ const booking_request=new Booking_request({
 
 await booking_request.save().then((createdBooking_request=> {
   return res.status(201).json({
-    name:booking_request.name
+    res:booking_request.email
   })
 })).catch((err)=>{
   return res.status(500).json({
