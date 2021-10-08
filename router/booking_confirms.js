@@ -33,6 +33,7 @@ if(!regList){
 
 
 
+
 router.post('/', async (req, res) => {
   
    // const{email,garbage_type,quantity,address}=req.body;

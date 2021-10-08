@@ -48,6 +48,14 @@ if(!regList){
 
 // });
 
+router.get('/:id', async(req,res)=>{
+    const reg_pick = await Booking_request.findById(req.params.id).select('email');
+
+    if(!reg_pick) {
+        res.status(500).json({message: 'The reg with the given ID was not found.'});
+    } 
+    return res.status(200).json({email:reg_pick.email});
+});
 router.get('/reqq', async (req, res) => {
   
 const regList =  await Booking_request.find({isBooked:false}).select('email garbage_type quantity address');
