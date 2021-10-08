@@ -50,7 +50,7 @@ if(!regList){
 
 router.get('/reqq', async (req, res) => {
   
-const regList =  await Booking_request.find({isBooked:false}).select('garbage_type quantity address');
+const regList =  await Booking_request.find({isBooked:false}).select('email garbage_type quantity address');
 
 
 if(!regList){
