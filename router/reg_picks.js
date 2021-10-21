@@ -31,6 +31,16 @@ router.get(`/get/count`, async (req, res) =>{
     });
 })
 
+router.get('/get/:email', async(req,res)=>{
+  const email=req.params.email;
+  console.log(email);
+    const rg = await Reg_pick.findOne({email:email});
+
+    if(!rg) {
+        return res.status(500).json({message: 'The reg with the given email was not found.'});
+    } 
+     return res.status(200).send(rg);
+});
 
 app.options('/login', function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
