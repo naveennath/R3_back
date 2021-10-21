@@ -110,7 +110,7 @@ router.get('/get/:email', async(req,res)=>{
     if(!rg) {
         return res.status(500).json({message: 'The reg with the given email was not found.'});
     } 
-     return res.status(200).json({name:rg.name,email:rg.email,phone:rg.phone});
+     return res.status(200).send(rg);
 });
 
 router.put('/:email',async (req, res)=> {
