@@ -48,7 +48,8 @@ const address_data=new Address_data({
 
 await address_data.save().then((createdAddress_data=> {
   return res.status(201).json({
-    name:Address_data.name
+    name:Address_data.name,
+    msg:'Added Successfully'
   })
 })).catch((err)=>{
   return res.status(500).json({
