@@ -51,14 +51,14 @@ app.options('/login', function (req, res) {
 router.post('/login', async (req, res) => {
 const user =  await Reg_pick.findOne({email:req.body.email});
 if(!user){
-  return res.status(201).json({msg:"the user not found"});
+  return res.status(201).json({msg:"First Kindly Register"});
 }
 if(user && (bcrypt.compareSync(req.body.pass,user.pass))){
  
 return res.status(201).json({name: user.name, email:user.email});
 }
 else{
-  return res.status(201).json({msg:"password is wrong"});
+  return res.status(201).json({msg:"Invalid Credentials"});
 }
   
 });

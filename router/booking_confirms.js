@@ -31,6 +31,26 @@ if(!regList){
 
 });
 
+router.get('/:pick_email', async (req, res) => {
+  console.log(req.params.email);
+const regList =  await Booking_confirm.find({pick_email:req.params.pick_email});
+const anss={};
+for( let i=0;i<regList.length;i=i+1){
+const ans=regList[i].booking_request.toString();
+    console.log(ans);
+ anss[i] =  await Booking_request.findById(ans).select('address garbage_type quantity');
+
+}
+
+if(!regList){
+  return res.status(500).json({success:false,msg:'no address found'})
+  
+}
+  //  return res.status(201).json({type:regList.type,address:regList.address});
+ return res.send(anss);
+
+});
+
 
 
 
