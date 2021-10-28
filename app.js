@@ -29,6 +29,8 @@ const collectionsRouter=require('./router/collections');
 
 const Booking_confirm=require('./models/booking_confirm');
 const booking_confirmsRouter=require('./router/booking_confirms');
+const userconfirmsRouter=require('./router/userconfirms');
+
 const verifyRouter=require('./router/verify');
 
 const cors=require('cors');
@@ -61,6 +63,7 @@ app.use(api+'/vehicles',vehiclesRouter)
 app.use(api+'/collections',collectionsRouter)
 app.use(api+'/coins',coinsRouter)
 app.use(api+'/booking_requests',booking_requestsRouter)
+app.use(api+'/userconfirms',userconfirmsRouter)
 app.use(api+'/booking_confirms',booking_confirmsRouter)
 
 

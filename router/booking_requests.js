@@ -58,7 +58,7 @@ if(!regList){
 // });
 router.get('/reqq', async (req, res) => {
   
-const regList =  await Booking_request.find({isBooked:false}).select('email garbage_type quantity address');
+const regList =  await Booking_request.find({isBooked:false}).select('email garbage_type quantity address isBooked');
 
 
 if(!regList){
@@ -72,8 +72,8 @@ if(!regList){
 
 
 router.get('/:email', async (req, res) => {
-  
-const regList =  await Booking_request.find({email:req.params.email}).select('garbage_type quantity address');
+  console.log(req.params.email);
+const regList =  await Booking_request.find({email:req.params.email,isBooked:false}).select('garbage_type quantity address');
 
 
 if(!regList){
@@ -84,7 +84,6 @@ if(!regList){
  return res.send(regList);
 
 });
-
 
 
 router.post('/', async (req, res) => {

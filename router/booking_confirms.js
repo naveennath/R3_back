@@ -31,6 +31,7 @@ if(!regList){
 
 });
 
+
 router.get('/:pick_email', async (req, res) => {
   console.log(req.params.email);
 const regList =  await Booking_confirm.find({pick_email:req.params.pick_email});
