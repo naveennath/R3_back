@@ -82,6 +82,13 @@ mongoose.connect(process.env.CONN_STRING,{
   
 //   console.log('server is running in http://localhost:3000');
 // });
+app.options('/', function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
+});
+
 
 var server =app.listen(process.env.PORT || 3000, function(){
           server.setTimeout(60 * 1000);
