@@ -84,6 +84,9 @@ mongoose.connect(process.env.CONN_STRING,{
 // });
 
 var server =app.listen(process.env.PORT || 3000, function(){
+          server.setTimeout(60 * 1000);
+
+  
   var port = server.address().port;
 console.log("Express is Working on port "+ port)
 })
