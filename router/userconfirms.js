@@ -35,7 +35,7 @@ const ema=regList[i].pick_email;
     res1['name'] = res2.name;
     res1['phone'] = res2.phone;
     res1['pick_email'] = res2.email;
-    res1.toJSON();
+
 console.log(res1);
     
 anss[i]=res1;
